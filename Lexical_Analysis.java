@@ -38,26 +38,26 @@ class FileScanner{
         File fp = new File(fileName);
 
         if(!fp.getName().endsWith(".c")) {
-			System.out.println("ÎÄ¼ş¸ñÊ½²»ÕıÈ·...");
+			System.out.println("æ–‡ä»¶æ ¼å¼ä¸æ­£ç¡®...");
 			return;
 		}
 		
-		//¹¹ÔìÎÄ¼şÔÄ¶ÁÆ÷
+		//æ„é€ æ–‡ä»¶é˜…è¯»å™¨
 		try {
 			fr = new FileReader(fp);
-			pr = new PushbackReader(fr,2); //ÓÃ¿ÉÒÔ»ØÍËµÄ»ØÍËÁ÷·â×°£¬²¢ÉèÖÃÁ½¸ö×Ö·û´óĞ¡µÄ»º´æ
+			pr = new PushbackReader(fr,2); //ç”¨å¯ä»¥å›é€€çš„å›é€€æµå°è£…ï¼Œå¹¶è®¾ç½®ä¸¤ä¸ªå­—ç¬¦å¤§å°çš„ç¼“å­˜
 		} catch (FileNotFoundException e) {
-			System.out.println(fileName+"ÎÄ¼ş²»´æÔÚ...");
+			System.out.println(fileName+"æ–‡ä»¶ä¸å­˜åœ¨...");
 			e.printStackTrace();
 		}
 		
-		// ¹¹ÔìÊä³öÎÄ¼ş
+		// æ„é€ è¾“å‡ºæ–‡ä»¶
 		outputFileName = fileName.substring(0, fileName.indexOf('.')) + ".re";
         fp = new File(outputFileName);
 
 		try {
 			if (!fp.exists()) {
-				fp.createNewFile(); // ´´½¨Êä³öµÄÖĞ¼äÎÄ¼ş
+				fp.createNewFile(); // åˆ›å»ºè¾“å‡ºçš„ä¸­é—´æ–‡ä»¶
 			}
 			fw = new FileWriter(fp);
 		} catch (IOException e) {
@@ -67,7 +67,7 @@ class FileScanner{
 
     public void AnalysisProcess(){
         if (pr == null){
-            System.out.println("ÎÄ¼ş´íÎó...");
+            System.out.println("æ–‡ä»¶é”™è¯¯...");
             return;
         }
 
@@ -77,7 +77,7 @@ class FileScanner{
                 output = null;
                 content = null;
                 ch = (char)pr.read();
-                if(ch==(char)-1) { //¶ÁÈ¡ÎÄ¼şÎ²£¬ËµÃ÷ÎÄ¼ş·ÖÎöÍê³É£¬ÍË³ö
+                if(ch==(char)-1) { //è¯»å–æ–‡ä»¶å°¾ï¼Œè¯´æ˜æ–‡ä»¶åˆ†æå®Œæˆï¼Œé€€å‡º
                     break;
                 }
                 //System.out.println(ch);
@@ -145,7 +145,7 @@ class FileScanner{
                                         break;
                                     }
                                 }
-                                if(ch==(char)-1) { //¶ÁÈ¡ÎÄ¼şÎ²£¬ËµÃ÷ÎÄ¼ş·ÖÎöÍê³É£¬ÍË³ö
+                                if(ch==(char)-1) { //è¯»å–æ–‡ä»¶å°¾ï¼Œè¯´æ˜æ–‡ä»¶åˆ†æå®Œæˆï¼Œé€€å‡º
                                     break Loop;
                                 }
                             }
@@ -402,7 +402,7 @@ class FileScanner{
             if (key.equals(output)){
                 if (key.equals("Single character separator")||key.equals("Unsigned Integer")||key.equals("Identifier")||key.equals("Undefined identifier")||key.equals("%")){
                     try {
-                        fw.write("("+content+","+symbolTable.getSymHashMap().get(key)+")\n");
+                        fw.write("("+symbolTable.getSymHashMap().get(key)+","+content+")\n");
                         fw.flush();
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -410,7 +410,7 @@ class FileScanner{
                 }
                 else{
                     try {
-                        fw.write("("+output+","+symbolTable.getSymHashMap().get(key)+")\n");
+                        fw.write("("+symbolTable.getSymHashMap().get(key)+","+output+")\n");
                         fw.flush();
                     } catch (IOException e) {
                         e.printStackTrace();
