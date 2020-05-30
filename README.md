@@ -5,3 +5,12 @@
 ### 2020/5/25
 * 实验一：词法分析
 > Lexical_Analysis.java
+>> 测试文件
+>> * test.c
+>> * test.re
+
+### 2020/5/30
+* 实验二： 递归下降分析
+> Recursive_Descent_Analysis.java
+>> 测试文件
+>> * result.txt
