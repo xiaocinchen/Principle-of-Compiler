@@ -105,7 +105,7 @@ class FileScanner{
                             output = "++";
                         else {
                             pr.unread(ch);
-                            output = "=";
+                            output = "+";
                         }
                         break;
                     case '-':
@@ -353,7 +353,7 @@ class FileScanner{
                             content = String.valueOf(ch);
                                 while (true){
                                     ch = (char)pr.read();
-                                    if (ch != ' ' && ch!='('&&ch!=')'&&ch!='{'&&ch!='}'&&ch!=';'&&ch!=','&&ch!='\"')
+                                    if (Character.isDigit(ch))
                                         content += ch;
                                     else{
                                         pr.unread(ch);
